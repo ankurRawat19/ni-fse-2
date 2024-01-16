@@ -1,0 +1,51 @@
+service: ni-fse-2
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: eu-north-1
+
+functions:
+  saveFormData:
+    handler: lambdaFunctions/saveFormData.handler
+    events:
+      - http:
+          path: /save
+          method: post
+
+  getAllRecords:
+    handler: lambdaFunctions/getAllRecords.handler
+    events:
+      - http:
+          path: /id
+          method: get
+
+  updateUser:
+    handler: lambdaFunctions/updateUser.handler
+    events:
+      - http:
+          path: /id/{id}
+          method: put
+
+  getRecordDetails:
+    handler: lambdaFunctions/getRecordDetails.handler
+    events:
+      - http:
+          path: /id/{id}
+          method: get
+
+resources:
+  Resources:
+    MyDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: 'userData'
+        AttributeDefinitions:
+          - AttributeName: 'userId'
+            AttributeType: 'S'
+        KeySchema:
+          - AttributeName: 'userId'
+            KeyType: 'HASH'
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5

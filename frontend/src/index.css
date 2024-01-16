@@ -1,0 +1,28 @@
+/* Reset some default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Navigation styles */
+.NavBar {
+  background-color: #2196f3;
+  padding: 10px;
+  text-align: center;
+}
+
+.NavLink {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 18px;
+}
+
